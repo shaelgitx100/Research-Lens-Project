@@ -1,0 +1,48 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root, [data-theme='dark'] {
+  --bg: 14 16 20; --surface: 20 23 29; --raised: 28 32 40; --line: 43 48 58;
+  --ink: 230 232 236; --muted: 148 156 170; --accent: 96 176 210; --amber: 214 168 94; --good: 112 190 142; --bad: 224 110 110;
+}
+[data-theme='light'] {
+  --bg: 246 247 249; --surface: 255 255 255; --raised: 240 242 245; --line: 218 222 229;
+  --ink: 24 28 36; --muted: 96 104 118; --accent: 26 120 160; --amber: 168 110 20; --good: 40 130 80; --bad: 190 60 60;
+}
+
+@layer base {
+  html { color-scheme: dark; }
+  [data-theme='light'] { color-scheme: light; }
+  body { @apply bg-bg text-ink font-sans antialiased; }
+  h1, h2, h3 { @apply font-serif tracking-tight; }
+  ::selection { background: rgb(var(--accent) / 0.3); }
+  :focus-visible { outline: 2px solid rgb(var(--accent)); outline-offset: 2px; }
+}
+
+@layer components {
+  .card { @apply rounded-lg border border-line bg-surface; }
+  .btn { @apply inline-flex items-center justify-center gap-2 rounded-md border border-line bg-raised px-3 py-1.5 text-sm font-medium text-ink transition hover:border-accent/60 disabled:cursor-not-allowed disabled:opacity-50; }
+  .btnPrimary { @apply inline-flex items-center justify-center gap-2 rounded-md bg-accent px-4 py-2 text-sm font-semibold transition hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-50; color: rgb(var(--bg)); }
+  .btnGhost { @apply inline-flex items-center gap-2 rounded-md px-2.5 py-1.5 text-sm text-muted transition hover:bg-raised hover:text-ink; }
+  .input { @apply w-full rounded-md border border-line bg-bg px-3 py-2 text-sm text-ink placeholder:text-muted/70 focus:border-accent focus:outline-none; }
+  .label { @apply mb-1 block text-xs font-medium uppercase tracking-wide text-muted; }
+  .badge { @apply inline-flex items-center rounded border px-1.5 py-0.5 text-[11px] font-medium leading-4; }
+  .link { @apply text-accent underline decoration-accent/40 underline-offset-2 hover:decoration-accent; }
+}
+
+@keyframes fadeUp { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+.fadeUp { animation: fadeUp 0.35s ease both; }
+@keyframes drift { 0%, 100% { transform: translate(0, 0); } 50% { transform: translate(3px, -4px); } }
+.drift { animation: drift 7s ease-in-out infinite; }
+@keyframes pulseLine { 0%, 100% { opacity: 0.25; } 50% { opacity: 0.8; } }
+.pulseLine { animation: pulseLine 4s ease-in-out infinite; }
+@media (prefers-reduced-motion: reduce) { .fadeUp, .drift, .pulseLine { animation: none; } }
+
+.printOnly { display: none; }
+@media print {
+  .noPrint { display: none !important; }
+  .printOnly { display: block; }
+  body { background: white; color: black; }
+  .printArea { border: none !important; background: white !important; color: black !important; }
+}

@@ -1,0 +1,64 @@
+.paper-reader {
+  max-height: 34vh;
+  overflow: auto;
+  margin: 8px 0 18px;
+  padding: 14px 16px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--panel2);
+  color: var(--text);
+  font-size: 12px;
+  line-height: 1.75;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.paper-ai-results {
+  margin-top: 22px;
+  padding-top: 18px;
+  border-top: 1px solid var(--border);
+}
+
+.paper-ai-columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+  margin-top: 12px;
+}
+
+.paper-ai-columns h3 {
+  margin: 0 0 10px;
+  font: 700 15px/1.4 Manrope, sans-serif;
+}
+
+.paper-ai-fields section {
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.paper-ai-fields strong {
+  display: block;
+  color: var(--accent);
+  font-size: 11px;
+  text-transform: capitalize;
+}
+
+.paper-ai-fields p,
+.paper-ai-fields ul {
+  margin: 5px 0 0;
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.65;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.paper-ai-fields ul {
+  padding-left: 18px;
+}
+
+@media (max-width: 760px) {
+  .paper-ai-columns {
+    grid-template-columns: 1fr;
+  }
+}

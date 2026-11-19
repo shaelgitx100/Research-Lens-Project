@@ -1,0 +1,9 @@
+{
+  "name": "researchlens-client",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit -p tsconfig.json && vite build"
+  }
+}
